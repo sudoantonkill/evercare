@@ -1,0 +1,308 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enhanced animated background with more sophisticated gradients */
+.bg-animated {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.bg-animated .blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.4;
+  transform-origin: center;
+  border-radius: 50%;
+  animation: float 15s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.bg-animated .blob.b1 {
+  width: 600px;
+  height: 600px;
+  left: -10%;
+  top: -10%;
+  background: conic-gradient(from 180deg, rgba(59, 130, 246, 0.6), rgba(147, 51, 234, 0.7), rgba(59, 130, 246, 0.6));
+  animation-duration: 20s;
+}
+
+.bg-animated .blob.b2 {
+  width: 500px;
+  height: 500px;
+  right: -12%;
+  top: 15%;
+  background: conic-gradient(from 45deg, rgba(236, 72, 153, 0.5), rgba(124, 58, 237, 0.6), rgba(59, 130, 246, 0.5));
+  animation-duration: 18s;
+  animation-delay: 2s;
+}
+
+.bg-animated .blob.b3 {
+  width: 450px;
+  height: 450px;
+  left: 8%;
+  bottom: -15%;
+  background: conic-gradient(from 270deg, rgba(16, 185, 129, 0.4), rgba(56, 189, 248, 0.5), rgba(236, 72, 153, 0.4));
+  animation-duration: 22s;
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1) translateZ(0);
+  }
+  25% {
+    transform: translateY(-20px) rotate(2deg) scale(1.05) translateZ(0);
+  }
+  50% {
+    transform: translateY(-35px) rotate(-3deg) scale(1.08) translateZ(0);
+  }
+  75% {
+    transform: translateY(-15px) rotate(1deg) scale(1.03) translateZ(0);
+  }
+}
+
+/* Glass morphism effects */
+.glass {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Enhanced button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 15px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(59, 130, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(51, 65, 85, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Enhanced input styles */
+.input-enhanced {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.input-enhanced:focus {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  outline: none;
+}
+
+.input-enhanced::placeholder {
+  color: rgba(148, 163, 184, 0.7);
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Shimmer effect for loading states */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Success/Error message styles */
+.message-success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.message-error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.1));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* OTP input special styling */
+.otp-input {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.2),
+    0 8px 20px rgba(59, 130, 246, 0.1);
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Glass button variants */
+.glass-primary {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+.glass-light {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Camera stream styles */
+.camera-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.camera-container:hover {
+  transform: scale(1.02);
+}
+
+.camera-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 1.5rem;
+  pointer-events: none;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle at center, transparent 60%, rgba(0, 0, 0, 0.4));
+}
+
+/* Location display styles */
+.location-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+/* Hobby selection styles */
+.hobby-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.hobby-item {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.hobby-item:hover {
+  transform: translateY(-2px);
+}
