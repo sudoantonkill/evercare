@@ -42,6 +42,8 @@ export default function App() {
     const user = session?.user;
     const path = loc.pathname;
     
+    console.log('Auth state:', { user: !!user, path, ready });
+    
     if (!user) {
       if (path !== '/') nav('/', { replace: true });
       return;
@@ -50,6 +52,8 @@ export default function App() {
     // Check database for phone verification instead of just metadata
     const checkPhoneVerification = async () => {
       try {
+        console.log('Checking phone verification for user:', user.id);
+        
         // First check if profile exists, only create if it doesn't
         const { data: existingProfile } = await supabase
           .from('profiles')
@@ -59,6 +63,7 @@ export default function App() {
 
         // Only create profile if it doesn't exist, don't overwrite existing data
         if (!existingProfile) {
+          console.log('Creating new profile for user:', user.id);
           const { error: insertError } = await supabase
             .from('profiles')
             .insert({ 
@@ -86,9 +91,13 @@ export default function App() {
         const phoneVerified = profile?.phone_verified || user.user_metadata?.phone_verified || false;
         const profileCompleted = profile?.profile_completed || false;
         
+        console.log('Profile status:', { phoneVerified, profileCompleted, userRole: profile?.user_role });
+        
         if (!phoneVerified && path !== '/verify-phone') {
+          console.log('Redirecting to verify-phone');
           nav('/verify-phone', { replace: true });
         } else if (phoneVerified && !profileCompleted && path !== '/complete-profile') {
+          console.log('Redirecting to complete-profile');
           nav('/complete-profile', { replace: true });
         } else if (phoneVerified && profileCompleted) {
           // Use profile role as source of truth, fallback to metadata only if profile role is null
@@ -96,8 +105,12 @@ export default function App() {
           const currentPath = path === '/' ? null : path;
           const targetPath = `/${userRole}-dashboard`;
           
+          console.log('Redirecting to dashboard:', { userRole, targetPath, currentPath });
+          
           // Allow nested routes by checking if the current path starts with the target path
           if (currentPath && !currentPath.startsWith(targetPath)) {
+            nav(targetPath, { replace: true });
+          } else if (!currentPath) {
             nav(targetPath, { replace: true });
           }
         }
