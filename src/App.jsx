@@ -18,7 +18,12 @@ export default function App() {
   useEffect(() => {
     let unsub = () => {};
     (async () => {
-      const { data } = await supabase.auth.getSession();
+      // Handle OAuth callback first
+      const { data, error } = await supabase.auth.getSession();
+      if (error) {
+        console.error('Auth error:', error);
+      }
+      
       setSession(data?.session ?? null);
       setReady(true);
       

@@ -111,8 +111,7 @@ export default function Login() {
     setMsg('');
     try {
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: `${origin}/verify-phone` },
+        provider: 'google'
       });
       if (error) throw error;
     } catch (e) {
